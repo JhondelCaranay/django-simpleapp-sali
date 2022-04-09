@@ -15,7 +15,11 @@
         <!-- <img  class="post-image" src={% static "images/f3.jpg" %} alt=""> -->
     </a>
 </div>
+{% empty %}
+<p class="empty-post">No posts found</p>
 {% endfor %}
+
+
 
 <div class="pagination">
     <span class="step-links">

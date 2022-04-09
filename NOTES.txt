@@ -18,67 +18,49 @@ $ pip install gunicorn // for production
 $ pip freeze > requirements.txt 
 
 $ git init
-$ git add
+$ git add .
 $ git commit -m "initial commit"
+$ git remote add origin https://github.com/JhondelCaranay/django-simpleApp-sali.git
+
+$ git branch -M main
+$ git push -u origin main
+//update
+$ git add .
+$ git commit -m "initial commit 1"
+
+HEROKU DEPLOY
+# deployment method github
+connect to github repository
+activate automatic deploys
+
+goto to setting setup config vars and add
+SECRET_KEY=
+DEBUG=True      // SET to False after successful deployment
+DATABASE_URL=
+DISABLE_COLLECTSTATIC=1
 
 
+GENERATE SECRET_KEY
+python command line
+>>> import secrets
+>>> secrets.token_hex()
+'546905db20d6f3d8041126dfd96196c8089a1db3c783ec28084f51b321c3dbf7'
 
-DEPLOYMENT #####################################################
-// install heroku cli 
-// in command line enter >heroku login
-// dependencies needed for deployment 
+goto resource in heroku add heroku postgres create database
 
-$ pip install 
-python-decouple // environment variables
-psycopg2    
-gunicorn
-django-heroku // automatically configured django to heroku
-whitenoise // to collect static files
+CLICK DEPLOY
 
+// page will raise an error because we haven't run migrate
 
-$ pip install psycopg2 gunicorn django-heroku whitenoise // shortcut installation
-
-//create runtime.txt
-paste python verion use
-
-// create file name Profile
-// paste this script below
-release: python manage.py migrate
-web: gunicorn core.wsgi --log-file=-
-
-run pip freeze > requirements.txt
+CLICK MORE ON TOP AND GOTO RUN ON CONSOLE
+TYPE BASH
+python manage.py migrate
 
 
- GITHUB ###############################################################
-// create django repo
+UPDATE ON PRODUCTION
 
-
- HEROKU ###############################################################
-// create heroku app
-// after creating app goto resources to create a database
-// open database click settings and view credentials . Here you can see postgress connection info
-
-// configure database in setting add on info from heroku posgres
-
-import django_heroku
-//add code to setting
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-django_heroku.settings(locals())
-
-// add to allowed in settings
-ALLOWED_HOSTS = ["django-simpleapp-sali.herokuapp.com"]
-
-// turn off debug
-
-
-
-
-PUSH TO GITHUB #################################
-git add . // add all files
-git commit -m "initial push"
-git push -u origin master 
-
-// run make migrations and migarte
+$ git add .
+$ git commit -m "changed something"
+$ git push
 
 

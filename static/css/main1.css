@@ -163,3 +163,9 @@ ul.messages li {
 .pagination-current{
     color: black;
 }
+
+.empty-post {
+    text-align: center;
+    padding: 20px;
+    background-color: white;
+}
