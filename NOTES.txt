@@ -17,6 +17,9 @@ $ pip install gunicorn // for production
 
 $ pip freeze > requirements.txt 
 
+$ git init
+$ git add
+$ git commit -m "initial commit"
 
 
 
