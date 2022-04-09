@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} post detail {% endblock title %}
+
+{% block content %}
+
+<h1 class="title">POST DETAIL PAGE</h1>
+
+<div class="post">
+    <h2>{{ post.id }} | {{ post.title }}</h2>
+    <p>By {{ post.author }}</p>
+
+    <img src="{{ post.thumbnail.url }}" alt="img" class="post-image">
+
+    <div class="form-group" style="margin-top: 20px;">
+        <a href={% url 'update_post' post.id %} class="update_link">Update</a>
+    </div>
+</div>
+
+{% endblock content %}

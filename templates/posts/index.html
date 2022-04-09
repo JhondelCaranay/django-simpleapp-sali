@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} home {% endblock title %}
+
+{% block content %}
+
+<h1 class="title">List of posts</h1>
+
+{% for post in posts %}
+<div class="post">
+    <a href={% url 'post_detail' post.id %}>
+        <h2>{{ post.id }} | {{ post.title }}</h2>
+        <p>By {{ post.author }}</p>
+        <!-- <img  class="post-image" src={% static "images/f3.jpg" %} alt=""> -->
+    </a>
+</div>
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if posts.has_previous %}
+        <a href="?page=1" class="pagination-btn">&laquo; first</a>
+        <a href="?page={{ posts.previous_page_number }}" class="pagination-btn">previous</a>
+        {% endif %}
+
+        <span class="pagination-current">
+            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+        </span>
+
+        {% if posts.has_next %}
+        <a href="?page={{ posts.next_page_number }}" class="pagination-btn">next</a>
+        <a href="?page={{ posts.paginator.num_pages }}" class="pagination-btn">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock content %}

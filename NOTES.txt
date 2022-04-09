@@ -1,0 +1,81 @@
+DJANGO DEPLOY METHOD BY SALI #############################################
+pip install python-decouple //  read environment variable
+https://pypi.org/project/python-decouple/
+
+$ pip install dj-database-url
+https://pypi.org/project/dj-database-url/
+
+$ pip install whitenoise            // serve staticfiles
+https://whitenoise.evans.io/en/stable/
+
+$ pip install psycopg2-binary
+
+create runtime.txt file
+add python version
+
+$ pip install gunicorn // for production
+
+$ pip freeze > requirements.txt 
+
+
+
+
+DEPLOYMENT #####################################################
+// install heroku cli 
+// in command line enter >heroku login
+// dependencies needed for deployment 
+
+$ pip install 
+python-decouple // environment variables
+psycopg2    
+gunicorn
+django-heroku // automatically configured django to heroku
+whitenoise // to collect static files
+
+
+$ pip install psycopg2 gunicorn django-heroku whitenoise // shortcut installation
+
+//create runtime.txt
+paste python verion use
+
+// create file name Profile
+// paste this script below
+release: python manage.py migrate
+web: gunicorn core.wsgi --log-file=-
+
+run pip freeze > requirements.txt
+
+
+ GITHUB ###############################################################
+// create django repo
+
+
+ HEROKU ###############################################################
+// create heroku app
+// after creating app goto resources to create a database
+// open database click settings and view credentials . Here you can see postgress connection info
+
+// configure database in setting add on info from heroku posgres
+
+import django_heroku
+//add code to setting
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+django_heroku.settings(locals())
+
+// add to allowed in settings
+ALLOWED_HOSTS = ["django-simpleapp-sali.herokuapp.com"]
+
+// turn off debug
+
+
+
+
+PUSH TO GITHUB #################################
+git add . // add all files
+git commit -m "initial push"
+git push -u origin master 
+
+// run make migrations and migarte
+
+

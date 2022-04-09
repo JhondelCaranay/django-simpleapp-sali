@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>django | {% block title %}{% endblock title %}</title>
+
+    <!-- mian style -->
+    <link rel="stylesheet" href={% static "css/main1.css" %}>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div>
+                <a class="nav-link" href={% url 'home' %}>Home</a>
+                <a class="nav-link" href={% url 'about' %}>About</a>
+                <a class="nav-link" href={% url 'services' %}>Services</a>
+            </div>
+            <div>
+                {% if user.is_authenticated %}
+                <a class="nav-link" href={% url 'create_post' %}>Create Post</a>
+                {% endif %}
+            </div>
+            <div>
+
+                {% if request.user.is_authenticated %}
+                <!-- <a class="nav-link" href={% url 'sign_out' %}>Sign out</a> -->
+                <a class="nav-link" href={% url 'logout' %}>Log out</a>
+                {% else %}
+                <!-- <a class="nav-link" href={% url 'sign_in' %}>Sign in</a> -->
+                <a class="nav-link" href={% url 'login' %}>Login</a>
+                <a class="nav-link" href={% url 'sign_up' %}>Sign up</a>
+                {% endif %}
+
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        {% block content %}{% endblock content %}
+    </div>
+
+    <footer>
+        <p>&copy; django tutorial 2022</p>
+    </footer>
+
+    <script src={% static "js/index.js" %}></script>
+
+</body>
+
+</html>
